@@ -10,14 +10,8 @@
 
 ## Video demostrativo
 
-<!-- Para poner el video: cambia https://youtu.be/PEGA-AQUI-EL-ENLACE por el enlace real en las dos líneas de abajo. -->
-[![Ver el video demostrativo](docs/Diagramas/00-portada-video.jpg)](https://youtu.be/PEGA-AQUI-EL-ENLACE)
+[![Tarea Semana 7 (Asignación 3)](https://img.youtube.com/vi/OWiT1kiuZtU/hqdefault.jpg)](https://youtu.be/OWiT1kiuZtU)
 
-<div align="center">
-
-**▶ [Ver el video demostrativo](https://youtu.be/PEGA-AQUI-EL-ENLACE)** &nbsp;·&nbsp; 📄 **[Documentación completa (PDF)](docs/Documentacion_Zabbix-SNMP-DHCP_2025-0813.pdf)** &nbsp;·&nbsp; [versión Word](docs/Documentacion_Zabbix-SNMP-DHCP_2025-0813.docx)
-
-</div>
 
 | | |
 |---|---|
