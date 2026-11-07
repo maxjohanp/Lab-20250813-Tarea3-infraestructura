@@ -1,0 +1,111 @@
+! =============================================================================
+!  SW-0813 - Cisco IOSvL2 - VLAN, IP de gestion, DHCP snooping y SNMP
+!  Seguridad de Redes - Practica Zabbix - Maxyohan Montas (2025-0813)
+!
+!  Se pega por bloques en la consola del switch (GNS3), en orden.
+!  <CLAVE-ENABLE> y <COMUNIDAD-RO> se cambian por los valores reales al pegar;
+!  en el repositorio no se publican. La comunidad: solo letras y numeros, sin @.
+!  Plantilla IOSvL2 de 10 puertos: Gi0/0-3, Gi1/0-3 y Gi2/0-1.
+! =============================================================================
+
+! ---------- Bloque 1 - Base, VLAN, puertos e IP de gestion ------------------
+enable
+configure terminal
+hostname SW-0813
+no ip domain-lookup
+ip domain-name lab0813.local
+clock timezone AST -4 0
+service timestamps log datetime msec localtime show-timezone
+service timestamps debug datetime msec localtime show-timezone
+service password-encryption
+no ip http server
+no ip http secure-server
+banner motd ^
+ACCESO RESTRINGIDO - SW-0813 (LAB0813)
+Solo personal autorizado. Toda la actividad queda registrada.
+^
+vlan 13
+ name LAN
+vlan 999
+ name NO-USADO
+exit
+interface GigabitEthernet0/0
+ description R-0813 Fa0/0 (servidor DHCP)
+ switchport mode access
+ switchport access vlan 13
+ switchport nonegotiate
+ no shutdown
+exit
+interface GigabitEthernet0/1
+ description ZBX-0813 (Zabbix, cliente DHCP)
+ switchport mode access
+ switchport access vlan 13
+ switchport nonegotiate
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+exit
+interface range GigabitEthernet0/2 - 3 , GigabitEthernet1/0 - 3 , GigabitEthernet2/0 - 1
+ description Sin uso
+ switchport mode access
+ switchport access vlan 999
+ shutdown
+exit
+interface Vlan1
+ no ip address
+ shutdown
+exit
+interface Vlan13
+ description Gestion de SW-0813
+ ip address 10.20.25.2 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 10.20.25.1
+line con 0
+ exec-timeout 10 0
+ logging synchronous
+exit
+logging buffered 64000 informational
+end
+
+! ---------- Bloque 2 - Clave de enable ----------------------------------------
+configure terminal
+enable secret <CLAVE-ENABLE>
+end
+
+! ---------- Bloque 3 - DHCP snooping: solo el router puede dar IP -----------
+! Gi0/0 (router) es de confianza; en Gi0/1 un DHCP falso se descarta.
+! Sin la opcion 82: el servidor DHCP del router descarta las solicitudes que la traen.
+configure terminal
+ip dhcp snooping vlan 13
+no ip dhcp snooping information option
+ip dhcp snooping
+interface GigabitEthernet0/0
+ ip dhcp snooping trust
+exit
+interface GigabitEthernet0/1
+ ip dhcp snooping limit rate 15
+exit
+end
+
+! ---------- Bloque 4 - SNMP de solo lectura, solo para ZBX-0813 ------------
+configure terminal
+ip access-list standard ACL-SNMP
+ remark Solo ZBX-0813 consulta SNMP
+ permit host 10.20.25.10
+ deny any log
+exit
+snmp-server community <COMUNIDAD-RO> RO ACL-SNMP
+snmp-server location LAB0813 - GNS3 - SW-0813
+snmp-server contact Maxyohan Montas 2025-0813
+snmp-server ifindex persist
+end
+
+! ---------- Bloque 5 - Comprobar y guardar ----------------------------------
+terminal length 0
+show vlan brief
+show ip interface brief
+show ip dhcp snooping
+show ip dhcp snooping binding
+show access-lists ACL-SNMP
+copy running-config startup-config

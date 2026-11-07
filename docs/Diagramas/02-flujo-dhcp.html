@@ -1,0 +1,106 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;background:#ffffff}
+svg text{font-family:Inter,'DejaVu Sans',sans-serif}
+.t-title{font-size:30px;font-weight:800;fill:#0B1F3A}
+.t-sub{font-size:16px;fill:#475569}
+.t-name{font-size:23px;font-weight:800;fill:#0B1F3A}
+.t-role{font-size:14.5px;fill:#475569}
+.t-ip{font-size:16px;font-weight:700;fill:#0F3D91}
+.t-small{font-size:13px;fill:#64748B}
+.t-zone{font-size:15px;font-weight:800;letter-spacing:1.5px}
+.t-card-h{font-size:15px;font-weight:800;fill:#0B1F3A}
+.t-card{font-size:14px;fill:#334155}
+.t-msg{font-size:15px;font-weight:700;fill:#0B1F3A}
+.t-note{font-size:13.5px;fill:#334155}
+.t-port{font-size:13px;font-weight:700;fill:#334155}
+</style></head><body><svg id="d" width="1600" height="960" viewBox="0 0 1600 960" xmlns="http://www.w3.org/2000/svg"><rect width="1600" height="960" fill="#ffffff"/>
+<defs>
+  <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+  <marker id="aa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D97706"/></marker>
+  <marker id="an" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0B1F3A"/></marker>
+  <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker>
+  <marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7C3AED"/></marker>
+  <g id="rt">
+    <ellipse cx="0" cy="14" rx="56" ry="20" fill="#0E7490"/>
+    <rect x="-56" y="-12" width="112" height="26" fill="#0E7490"/>
+    <ellipse cx="0" cy="-12" rx="56" ry="20" fill="#22A3B8"/>
+    <g stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" fill="none">
+      <path d="M-30,-20 L-8,-12"/><path d="M30,-4 L8,-12"/><path d="M-30,-4 L-8,-12"/><path d="M30,-20 L8,-12"/>
+    </g>
+    <g fill="#ffffff"><path d="M-8,-12 l-9,-6 l2,8 z"/><path d="M8,-12 l9,6 l-2,-8 z"/><path d="M-30,-4 l9,-1 l-6,-6 z"/><path d="M30,-20 l-9,1 l6,6 z"/></g>
+  </g>
+  <g id="sw">
+    <rect x="-64" y="-26" width="128" height="52" rx="9" fill="#334155"/>
+    <rect x="-64" y="-26" width="128" height="14" rx="7" fill="#475569"/>
+    <g stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" fill="none"><path d="M-34,0 L30,0"/><path d="M34,13 L-30,13"/></g>
+    <g fill="#ffffff"><path d="M30,0 l-9,-6 l0,12 z"/><path d="M-30,13 l9,-6 l0,12 z"/></g>
+    <g fill="#94A3B8"><rect x="-52" y="-22" width="8" height="5" rx="1"/><rect x="-40" y="-22" width="8" height="5" rx="1"/><rect x="-28" y="-22" width="8" height="5" rx="1"/><rect x="-16" y="-22" width="8" height="5" rx="1"/></g>
+  </g>
+  <g id="srv">
+    <rect x="-38" y="-50" width="76" height="100" rx="9" fill="#1E3A8A"/>
+    <rect x="-30" y="-40" width="60" height="16" rx="3" fill="#3B5BCC"/>
+    <rect x="-30" y="-18" width="60" height="16" rx="3" fill="#3B5BCC"/>
+    <circle cx="20" cy="-32" r="3" fill="#34D399"/><circle cx="20" cy="-10" r="3" fill="#34D399"/>
+    <rect x="-30" y="6" width="60" height="34" rx="4" fill="#0B1F3A"/>
+    <path d="M-24,32 L-12,22 L-2,28 L10,14 L24,20" stroke="#F87171" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="pc">
+    <rect x="-46" y="-36" width="92" height="60" rx="6" fill="#475569"/>
+    <rect x="-40" y="-30" width="80" height="48" rx="3" fill="#BFDBFE"/>
+    <path d="M-58,28 L58,28 L50,38 L-50,38 z" fill="#334155"/>
+    <path d="M-30,6 L-16,-6 L-4,2 L10,-14 L26,-8" stroke="#1D4ED8" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</defs>
+<text x="50" y="58" class="t-title">DHCP con reserva y DHCP snooping</text>
+<text x="50" y="88" class="t-sub">Cómo ZBX-0813 recibe 10.20.25.10 y por qué un servidor DHCP falso no puede responder</text>
+<use href="#srv" x="230" y="170"/>
+<text x="230" y="252" text-anchor="middle" class="t-name">ZBX-0813</text>
+<text x="230" y="274" text-anchor="middle" class="t-role">cliente DHCP · enp0s3</text>
+<line x1="230" y1="292" x2="230" y2="770" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 6"/>
+<use href="#sw" x="800" y="170"/>
+<text x="800" y="252" text-anchor="middle" class="t-name">SW-0813</text>
+<text x="800" y="274" text-anchor="middle" class="t-role">DHCP snooping · VLAN 13</text>
+<line x1="800" y1="292" x2="800" y2="770" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 6"/>
+<use href="#rt" x="1370" y="170"/>
+<text x="1370" y="252" text-anchor="middle" class="t-name">R-0813</text>
+<text x="1370" y="274" text-anchor="middle" class="t-role">servidor DHCP · pool ZBX-0813</text>
+<line x1="1370" y1="292" x2="1370" y2="770" stroke="#94A3B8" stroke-width="2" stroke-dasharray="6 6"/>
+<text x="786" y="316" text-anchor="end" class="t-port">Gi0/1 · no confiable</text>
+<text x="814" y="316" class="t-port">Gi0/0 · confiable</text>
+<line x1="230" y1="360" x2="1370" y2="360" stroke="#D97706" stroke-width="3.2" marker-end="url(#aa)"/>
+<circle cx="800" cy="360" r="7" fill="#ffffff" stroke="#D97706" stroke-width="3"/>
+<text x="515.0" y="346" text-anchor="middle" class="t-msg">1 · DHCPDISCOVER (broadcast)</text>
+<text x="515.0" y="386" text-anchor="middle" class="t-note">client-id 01:08:00:27:06:b9:0f</text>
+<line x1="1370" y1="450" x2="230" y2="450" stroke="#0B1F3A" stroke-width="3.2" marker-end="url(#an)"/>
+<circle cx="800" cy="450" r="7" fill="#ffffff" stroke="#0B1F3A" stroke-width="3"/>
+<text x="1085.0" y="436" text-anchor="middle" class="t-msg">2 · DHCPOFFER 10.20.25.10</text>
+<text x="1085.0" y="476" text-anchor="middle" class="t-note">reserva del pool ZBX-0813</text>
+<line x1="230" y1="540" x2="1370" y2="540" stroke="#D97706" stroke-width="3.2" marker-end="url(#aa)"/>
+<circle cx="800" cy="540" r="7" fill="#ffffff" stroke="#D97706" stroke-width="3"/>
+<text x="515.0" y="526" text-anchor="middle" class="t-msg">3 · DHCPREQUEST 10.20.25.10</text>
+<line x1="1370" y1="630" x2="230" y2="630" stroke="#0B1F3A" stroke-width="3.2" marker-end="url(#an)"/>
+<circle cx="800" cy="630" r="7" fill="#ffffff" stroke="#0B1F3A" stroke-width="3"/>
+<text x="1085.0" y="616" text-anchor="middle" class="t-msg">4 · DHCPACK · 10.20.25.10/24</text>
+<text x="1085.0" y="656" text-anchor="middle" class="t-note">gateway 10.20.25.1 · lab0813.local · 1 día</text>
+<text x="818" y="386" text-anchor="start" font-size="13.5" font-weight="700" fill="#B45309">permitido: mensaje de cliente (máx. 15/s)</text>
+<text x="782" y="476" text-anchor="end" font-size="13.5" font-weight="700" fill="#0B1F3A">permitido: entra por Gi0/0, el puerto confiable</text>
+<text x="818" y="566" text-anchor="start" font-size="13.5" font-weight="700" fill="#B45309">permitido: mensaje de cliente</text>
+<text x="782" y="656" text-anchor="end" font-size="13.5" font-weight="700" fill="#0B1F3A">permitido: entra por Gi0/0 · se guarda el binding</text>
+<rect x="60" y="690" width="340" height="112" rx="14" fill="#EFF6FF" stroke="#93C5FD"/>
+<text x="80" y="720" class="t-card-h">En ZBX-0813</text>
+<text x="80" y="746" class="t-card">enp0s3 = 10.20.25.10/24</text>
+<text x="80" y="770" class="t-small">ip -br a · networkctl status enp0s3</text>
+<rect x="610" y="690" width="380" height="112" rx="14" fill="#F1F5F9" stroke="#CBD5E1"/>
+<text x="630" y="720" class="t-card-h">Tabla del DHCP snooping</text>
+<text x="630" y="746" class="t-card">08:00:27:06:B9:0F · 10.20.25.10</text>
+<text x="630" y="770" class="t-card">VLAN 13 · GigabitEthernet0/1</text>
+<text x="630" y="792" class="t-small">show ip dhcp snooping binding</text>
+<rect x="1190" y="690" width="350" height="112" rx="14" fill="#ECFEFF" stroke="#67E8F9"/>
+<text x="1210" y="720" class="t-card-h">Binding en el router</text>
+<text x="1210" y="746" class="t-card">10.20.25.10 · Manual · Active</text>
+<text x="1210" y="770" class="t-small">show ip dhcp binding</text>
+<rect x="60" y="830" width="1480" height="96" rx="16" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.5"/>
+<text x="84" y="864" class="t-card-h" fill="#991B1B">Si alguien conecta un servidor DHCP falso en un puerto no confiable</text>
+<text x="84" y="892" class="t-card">SW-0813 descarta sus OFFER y ACK: solo las respuestas que entran por Gi0/0 llegan a los clientes.</text>
+<text x="84" y="914" class="t-small">ip dhcp snooping vlan 13 · ip dhcp snooping trust (Gi0/0) · no ip dhcp snooping information option</text>
+</svg></body></html>

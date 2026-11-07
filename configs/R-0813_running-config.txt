@@ -1,0 +1,69 @@
+! =============================================================================
+!  R-0813 - running-config - Cisco 7200 (IOS 15.2(4)S6)
+!  Seguridad de Redes - Practica Zabbix - Maxyohan Montas (2025-0813)
+!
+!  Configuracion en ejecucion del router al cierre de la practica (06-nov-2026),
+!  consolidada de los bloques aplicados (scripts/R-0813_config.txt) y verificada
+!  en el equipo y desde Zabbix (docs/Evidencias 07, 09, 11, 12 y 14).
+!  Se listan las lineas configuradas en la practica; las que IOS trae por
+!  defecto se omiten. Clave de enable y comunidad SNMP: <ELIMINADO>.
+! =============================================================================
+!
+version 15.2
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+!
+hostname R-0813
+!
+logging buffered 64000 informational
+enable secret 5 <ELIMINADO>
+!
+clock timezone AST -4 0
+!
+ip dhcp excluded-address 10.20.25.1 10.20.25.9
+ip dhcp excluded-address 10.20.25.11 10.20.25.20
+!
+ip dhcp pool LAN-0813
+ network 10.20.25.0 255.255.255.0
+ default-router 10.20.25.1
+ domain-name lab0813.local
+ lease 1
+!
+ip dhcp pool ZBX-0813
+ host 10.20.25.10 255.255.255.0
+ client-identifier 0108.0027.06b9.0f
+ default-router 10.20.25.1
+ domain-name lab0813.local
+!
+no ip domain lookup
+ip domain name lab0813.local
+!
+interface FastEthernet0/0
+ description LAN 10.20.25.0/24 hacia SW-0813 Gi0/0
+ ip address 10.20.25.1 255.255.255.0
+!
+no ip http server
+no ip http secure-server
+!
+ip access-list standard ACL-SNMP
+ remark Solo ZBX-0813 consulta SNMP
+ permit 10.20.25.10
+ deny   any log
+!
+snmp-server community <ELIMINADO> RO ACL-SNMP
+snmp-server location LAB0813 - GNS3 - R-0813
+snmp-server contact Maxyohan Montas 2025-0813
+snmp-server ifindex persist
+!
+banner motd ^C
+ACCESO RESTRINGIDO - R-0813 (LAB0813)
+Solo personal autorizado. Toda la actividad queda registrada.
+^C
+!
+line con 0
+ exec-timeout 10 0
+ logging synchronous
+ stopbits 1
+!
+end

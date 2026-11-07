@@ -1,0 +1,83 @@
+! =============================================================================
+!  R-0813 - Cisco 7200 (IOS 15.2(4)S6) - Direccionamiento, servidor DHCP y SNMP
+!  Seguridad de Redes - Practica Zabbix - Maxyohan Montas (2025-0813)
+!
+!  Se pega por bloques en la consola del router (GNS3), en orden.
+!  <CLAVE-ENABLE> y <COMUNIDAD-RO> se cambian por los valores reales al pegar;
+!  en el repositorio no se publican. La comunidad: solo letras y numeros, sin @.
+! =============================================================================
+
+! ---------- Bloque 1 - Base e interfaz de la LAN ----------------------------
+enable
+configure terminal
+hostname R-0813
+no ip domain-lookup
+ip domain-name lab0813.local
+clock timezone AST -4 0
+service timestamps log datetime msec localtime show-timezone
+service timestamps debug datetime msec localtime show-timezone
+service password-encryption
+no ip http server
+no ip http secure-server
+banner motd ^
+ACCESO RESTRINGIDO - R-0813 (LAB0813)
+Solo personal autorizado. Toda la actividad queda registrada.
+^
+interface FastEthernet0/0
+ description LAN 10.20.25.0/24 hacia SW-0813 Gi0/0
+ ip address 10.20.25.1 255.255.255.0
+ no shutdown
+exit
+line con 0
+ exec-timeout 10 0
+ logging synchronous
+exit
+logging buffered 64000 informational
+end
+
+! ---------- Bloque 2 - Clave de enable ----------------------------------------
+configure terminal
+enable secret <CLAVE-ENABLE>
+end
+
+! ---------- Bloque 3 - Servidor DHCP de la LAN ------------------------------
+! .1 a .20 quedan para equipos con IP fija; la .10 no se excluye porque es la
+! reserva de ZBX-0813 (una IP reservada no puede estar en un rango excluido).
+! La reserva usa el client-identifier: 01 + MAC del adaptador 1 de ZBX-0813.
+configure terminal
+ip dhcp excluded-address 10.20.25.1 10.20.25.9
+ip dhcp excluded-address 10.20.25.11 10.20.25.20
+ip dhcp pool LAN-0813
+ network 10.20.25.0 255.255.255.0
+ default-router 10.20.25.1
+ domain-name lab0813.local
+ lease 1
+exit
+ip dhcp pool ZBX-0813
+ host 10.20.25.10 255.255.255.0
+ client-identifier 0108.0027.06b9.0f
+ default-router 10.20.25.1
+ domain-name lab0813.local
+exit
+end
+
+! ---------- Bloque 4 - SNMP de solo lectura, solo para ZBX-0813 ------------
+configure terminal
+ip access-list standard ACL-SNMP
+ remark Solo ZBX-0813 consulta SNMP
+ permit host 10.20.25.10
+ deny any log
+exit
+snmp-server community <COMUNIDAD-RO> RO ACL-SNMP
+snmp-server location LAB0813 - GNS3 - R-0813
+snmp-server contact Maxyohan Montas 2025-0813
+snmp-server ifindex persist
+end
+
+! ---------- Bloque 5 - Comprobar y guardar ----------------------------------
+terminal length 0
+show ip interface brief
+show ip dhcp pool
+show ip dhcp binding
+show access-lists ACL-SNMP
+copy running-config startup-config

@@ -1,0 +1,14 @@
+# /etc/netplan/50-cloud-init.yaml de ZBX-0813 (Ubuntu Server 24.04)
+# enp0s3 = adaptador 1 de VirtualBox, cableado en GNS3 al Gi0/1 de SW-0813: cliente DHCP del router.
+#          dhcp-identifier: mac -> envia 01 + MAC como client-identifier (coincide con la reserva de R-0813).
+#          optional: true -> el arranque no espera a que el router este encendido.
+# enp0s8 = adaptador 2, solo-anfitrion de VirtualBox: web de Zabbix y SSH desde Windows (192.168.56.111).
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: true
+      dhcp-identifier: mac
+      optional: true
+    enp0s8:
+      dhcp4: true
