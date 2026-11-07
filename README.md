@@ -1,13 +1,3 @@
-<div align="center">
-
-# Zabbix · SNMP · DHCP · monitoreo seguro de la red
-
-**Zabbix monitorea un router y un switch Cisco por SNMP v2c de solo lectura; el servidor recibe su IP por DHCP con reserva y el switch solo deja responder al servidor DHCP legítimo**
-
-`GNS3 2.2.61` · `Cisco 7200 · IOS 15.2(4)S6` · `Cisco IOSvL2` · `Ubuntu Server 24.04` · `Zabbix 7.0 LTS` · `SNMP v2c RO` · `DHCP snooping`
-
-</div>
-
 ## Video demostrativo
 
 [![Tarea Semana 7 (Asignación 3)](https://img.youtube.com/vi/OWiT1kiuZtU/hqdefault.jpg)](https://youtu.be/OWiT1kiuZtU)
